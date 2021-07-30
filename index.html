@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script type="text/javascript" src="./js/Persona.js"></script>
+    <script type="text/javascript" src="./js/Cliente.js"></script>
+    <script type="text/javascript" src="./js/Main.js"></script>
+   
+    <link rel="stylesheet" href="./css/estilos.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h2>Formulario</h2>
+    <div class="form-container">
+      <input type="text" placeholder="id" id="id" readonly />
+      <input type="text" placeholder="nombre" id="nombre" />
+      <input type="text" placeholder="apellido" id="apellido" />
+      <input type="text" placeholder="edad" id="edad" />
+
+      <section class="sexo">
+        <label for="">sexo</label>
+        <select name="sexo" id="sexo">
+          <option value="1">Masculino</option>
+          <option value="2">Femenino</option>
+        </select>
+      </section>
+    </div>
+    <div class="botones">
+      <button id="btnAgregar" name="" class="btn">
+        Agregar Ciudadano
+      </button>
+      <button id="btnLimpiar" class="btn">Limpiar Lista</button>
+    </div>
+    <h2>Filtros</h2>
+</div>
+<div class="contenedor-filtros">
+  <div class="labelFiltro">
+    <label for="">Filtrar Por: </label>
+  </div>
+  <div class="tipo-sexo">
+    <select name="tipo-sexo-select" id="filtro">
+      <option value="1">Masculino</option>
+      <option value="2">Femenino</option>
+      <option value="3">Todos</option>
+    </select>
+  </div>
+  <div class="labelPromedio">
+    <label for="">Promedio de Edad:</label>
+  </div>
+  <div class="inputPromedio">
+    <input type="text" id="promedio" readonly />
+  </div>
+  <div class="contenedor-promedio">
+    <button id="btnPromedio">Calcular Promedio</button>
+  </div>
+</div>
+<h1>LISTA DE CLIENTES</h1>
+<div class="check">
+  <input type="checkbox" id="checkId" checked>id</input>
+  <input type="checkbox" id="checkNombre" checked>nombre</input>
+  <input type="checkbox" id="checkApellido" checked>apellido</input>
+  <input type="checkbox" id="checkEdad" checked>edad</input>
+
+  <input type="checkbox" id="checkSexo" checked>sexo</input>
+</div>
+<div class="contenedor-tabla">
+  <table>
+    <tr>
+      <td id="cabecera-id" style="visibility: visible;">ID</td>
+      <td id="cabecera-nombre" style="visibility: visible;">nombre</td>
+      <td id="cabecera-apellido" style="visibility: visible;">apellido</td>
+      <td id="cabecera-edad" style="visibility: visible;">edad</td>
+
+      <td id="cabecera-sexo" style="visibility: visible;">sexo</td>
+    </tr>
+    <tbody id="tCuerpo"></tbody>
+  </table>
+</div>
+  </body>
+</html>

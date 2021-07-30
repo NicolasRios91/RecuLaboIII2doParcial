@@ -1,0 +1,69 @@
+body {
+  margin: auto;
+  width: 60%;
+}
+h2 {
+  text-align: center;
+}
+.contenedor-filtros {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+.form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+label {
+  margin-right: 10px;
+}
+#lblSexo {
+  margin-top: 10px;
+}
+
+input[type="text"] {
+  width: 40%;
+  margin: 6px 0px 6px 0px;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+tr {
+  height: 30px;
+}
+.botones {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+.btn {
+  cursor: pointer;
+  padding: 10px;
+  background-color: white;
+  border: solid 1px black;
+}
+
+.btn:hover {
+  color: white;
+  background-color: black;
+}
+.btn:active {
+  color: black;
+  background-color: white;
+  border: solid 1px black;
+}
+
+tr:nth-child(odd) {
+  background: white;
+}
+tr:nth-child(even) {
+  background: rgb(255, 227, 201);
+}
+#lista {
+  list-style: none;
+  text-align: center;
+}
