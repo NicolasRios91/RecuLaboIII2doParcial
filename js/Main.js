@@ -25,6 +25,8 @@ var Main = /** @class */ (function () {
             case "btnLimpiar":
                 this.LimpiarLista();
                 break;
+            case "btnEliminar":
+                this.EliminarCliente();
         }
     };
     Main.prototype.AgregarPersonaLista = function (id) {
@@ -154,6 +156,19 @@ var Main = /** @class */ (function () {
             }
             tdSexo.appendChild(tnSexo);
             tr.appendChild(tdSexo);
+            //TODO ELIMINAR
+            tr.addEventListener("click", function () {
+                // let index: number = listaClientes.indexOf(e);
+                document.getElementById("id").value =
+                    e.id.toString();
+                document.getElementById("nombre").value = e.nombre;
+                document.getElementById("apellido").value =
+                    e.apellido;
+                document.getElementById("edad").value =
+                    e.edad.toString();
+                document.getElementById("sexo").value =
+                    e.sexo.toString();
+            });
             table.appendChild(tr);
         });
     };
@@ -183,6 +198,16 @@ var Main = /** @class */ (function () {
         this.listaClientes = [];
         this.AgregarTabla(this.listaClientes);
     };
+    Main.prototype.EliminarCliente = function () {
+        var id = parseInt(document.getElementById("id").value);
+        this.listaClientes = this.listaClientes.filter(function (e) {
+            if (e.id != id) {
+                return e;
+            }
+        });
+        // this.listaClientes = listaFiltrada;
+        this.AgregarTabla(this.listaClientes);
+    };
     return Main;
 }());
 window.addEventListener("load", function () {
@@ -196,6 +221,7 @@ window.addEventListener("load", function () {
     var btnPromedio = document.getElementById("btnPromedio");
     var btnFiltro = document.getElementById("filtro");
     var btnLimpiar = document.getElementById("btnLimpiar");
+    var btnEliminar = document.getElementById("btnEliminar");
     btnLimpiar.addEventListener("click", function (event) { return main.handleEvent(event); });
     btnAgregar.addEventListener("click", function (event) { return main.handleEvent(event); });
     btnCheckId.addEventListener("change", function (event) { return main.handleEvent(event); });
@@ -207,4 +233,5 @@ window.addEventListener("load", function () {
     btnCheckSexo.addEventListener("change", function (event) { return main.handleEvent(event); });
     btnPromedio.addEventListener("click", function (event) { return main.handleEvent(event); });
     btnFiltro.addEventListener("change", function (event) { return main.handleEvent(event); });
+    btnEliminar.addEventListener("click", function (event) { return main.handleEvent(event); });
 });

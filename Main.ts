@@ -26,6 +26,8 @@ class Main implements EventListenerObject {
       case "btnLimpiar":
         this.LimpiarLista();
         break;
+      case "btnEliminar":
+        this.EliminarCliente();
     }
   }
 
@@ -195,7 +197,20 @@ class Main implements EventListenerObject {
       }
       tdSexo.appendChild(tnSexo);
       tr.appendChild(tdSexo);
+      //TODO ELIMINAR
+      tr.addEventListener("click", () => {
+        // let index: number = listaClientes.indexOf(e);
+        (<HTMLInputElement>document.getElementById("id")).value =
+          e.id.toString();
+        (<HTMLInputElement>document.getElementById("nombre")).value = e.nombre;
+        (<HTMLInputElement>document.getElementById("apellido")).value =
+          e.apellido;
+        (<HTMLInputElement>document.getElementById("edad")).value =
+          e.edad.toString();
 
+        (<HTMLInputElement>document.getElementById("sexo")).value =
+          e.sexo.toString();
+      });
       table.appendChild(tr);
     });
   }
@@ -227,6 +242,20 @@ class Main implements EventListenerObject {
     this.listaClientes = [];
     this.AgregarTabla(this.listaClientes);
   }
+
+  public EliminarCliente(): void {
+    let id: number = parseInt(
+      (<HTMLInputElement>document.getElementById("id")).value
+    );
+
+    this.listaClientes = this.listaClientes.filter((e) => {
+      if (e.id != id) {
+        return e;
+      }
+    });
+    // this.listaClientes = listaFiltrada;
+    this.AgregarTabla(this.listaClientes);
+  }
 }
 
 window.addEventListener("load", () => {
@@ -241,6 +270,7 @@ window.addEventListener("load", () => {
   let btnPromedio = <HTMLElement>document.getElementById("btnPromedio");
   let btnFiltro = <HTMLElement>document.getElementById("filtro");
   let btnLimpiar = <HTMLElement>document.getElementById("btnLimpiar");
+  let btnEliminar = <HTMLElement>document.getElementById("btnEliminar");
 
   btnLimpiar.addEventListener("click", (event) => main.handleEvent(event));
   btnAgregar.addEventListener("click", (event) => main.handleEvent(event));
@@ -253,4 +283,5 @@ window.addEventListener("load", () => {
   btnCheckSexo.addEventListener("change", (event) => main.handleEvent(event));
   btnPromedio.addEventListener("click", (event) => main.handleEvent(event));
   btnFiltro.addEventListener("change", (event) => main.handleEvent(event));
+  btnEliminar.addEventListener("click", (event) => main.handleEvent(event));
 });
