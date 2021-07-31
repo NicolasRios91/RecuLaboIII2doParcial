@@ -1,10 +1,26 @@
 "use strict";
-var Main = /** @class */ (function () {
-    function Main() {
+class Main {
+    constructor() {
+        this.getDatos = () => {
+            return new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    resolve("test");
+                }, 1500);
+            });
+        };
+        this.PromesaPromedio = (array) => {
+            return new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    let suma = array.reduce((a, b) => a + b, 0);
+                    let promedio = suma / array.length;
+                    resolve(promedio);
+                }, 750);
+            });
+        };
         this.listaClientes = new Array();
     }
-    Main.prototype.handleEvent = function (ev) {
-        var boton = ev.target;
+    handleEvent(ev) {
+        let boton = ev.target;
         switch (boton.id) {
             case "btnAgregar":
                 this.AgregarPersonas();
@@ -28,22 +44,22 @@ var Main = /** @class */ (function () {
             case "btnEliminar":
                 this.EliminarCliente();
         }
-    };
-    Main.prototype.AgregarPersonaLista = function (id) {
-        var nombre = document.getElementById("nombre")
+    }
+    AgregarPersonaLista(id) {
+        let nombre = document.getElementById("nombre")
             .value;
-        var apellido = (document.getElementById("apellido")).value;
-        var edad = document.getElementById("edad")
+        let apellido = (document.getElementById("apellido")).value;
+        let edad = document.getElementById("edad")
             .value;
-        var edadParseada = parseInt(edad);
-        var sexo = document.getElementById("sexo").value;
-        var c = new Cliente(id, nombre, apellido, parseInt(sexo), edadParseada);
+        let edadParseada = parseInt(edad);
+        let sexo = document.getElementById("sexo").value;
+        let c = new Cliente(id, nombre, apellido, parseInt(sexo), edadParseada);
         this.listaClientes.push(c);
-    };
-    Main.prototype.AgregarPersonas = function () {
-        var id = 1;
+    }
+    AgregarPersonas() {
+        let id = 1;
         if (this.listaClientes.length != 0) {
-            var cliente = this.listaClientes;
+            let cliente = this.listaClientes;
             id = cliente.reduce(function (last, i) {
                 if (i.id >= last) {
                     return i.id;
@@ -55,18 +71,18 @@ var Main = /** @class */ (function () {
         this.AgregarPersonaLista(id);
         this.AgregarTabla(this.listaClientes);
         //  this.CerrarForm();
-    };
-    Main.prototype.AgregarTabla = function (listaClientes) {
-        var checkId = (document.getElementById("checkId"));
-        var cabeceraId = (document.getElementById("cabecera-id"));
-        var checkNombre = (document.getElementById("checkNombre"));
-        var cabeceraNombre = (document.getElementById("cabecera-nombre"));
-        var checkEdad = (document.getElementById("checkEdad"));
-        var cabeceraEdad = (document.getElementById("cabecera-edad"));
-        var checkApellido = (document.getElementById("checkApellido"));
-        var cabeceraApellido = (document.getElementById("cabecera-apellido"));
-        var checkSexo = (document.getElementById("checkSexo"));
-        var cabeceraSexo = (document.getElementById("cabecera-sexo"));
+    }
+    AgregarTabla(listaClientes) {
+        let checkId = (document.getElementById("checkId"));
+        let cabeceraId = (document.getElementById("cabecera-id"));
+        let checkNombre = (document.getElementById("checkNombre"));
+        let cabeceraNombre = (document.getElementById("cabecera-nombre"));
+        let checkEdad = (document.getElementById("checkEdad"));
+        let cabeceraEdad = (document.getElementById("cabecera-edad"));
+        let checkApellido = (document.getElementById("checkApellido"));
+        let cabeceraApellido = (document.getElementById("cabecera-apellido"));
+        let checkSexo = (document.getElementById("checkSexo"));
+        let cabeceraSexo = (document.getElementById("cabecera-sexo"));
         if (checkId.checked) {
             cabeceraId.style.setProperty("visibility", "visible");
         }
@@ -97,21 +113,21 @@ var Main = /** @class */ (function () {
         else {
             cabeceraSexo.style.setProperty("visibility", "hidden");
         }
-        var table = (document.getElementById("tCuerpo"));
+        let table = (document.getElementById("tCuerpo"));
         table.innerHTML = "";
-        listaClientes.forEach(function (e) {
-            var id = e.id;
-            var nombre = e.nombre;
-            var apellido = e.apellido;
-            var edad = e.edad;
-            var sexo = e.sexo;
-            var tr = document.createElement("tr");
-            var tdId = document.createElement("td");
-            var tdNombre = document.createElement("td");
-            var tdApellido = document.createElement("td");
-            var tdEdad = document.createElement("td");
-            var tdSexo = document.createElement("td");
-            var tnId;
+        listaClientes.forEach((e) => {
+            let id = e.id;
+            let nombre = e.nombre;
+            let apellido = e.apellido;
+            let edad = e.edad;
+            let sexo = e.sexo;
+            let tr = document.createElement("tr");
+            let tdId = document.createElement("td");
+            let tdNombre = document.createElement("td");
+            let tdApellido = document.createElement("td");
+            let tdEdad = document.createElement("td");
+            let tdSexo = document.createElement("td");
+            let tnId;
             if (checkId.checked) {
                 tnId = document.createTextNode(id);
             }
@@ -120,7 +136,7 @@ var Main = /** @class */ (function () {
             }
             tdId.appendChild(tnId);
             tr.appendChild(tdId);
-            var tnNombre;
+            let tnNombre;
             if (checkNombre.checked) {
                 tnNombre = document.createTextNode(nombre);
             }
@@ -129,7 +145,7 @@ var Main = /** @class */ (function () {
             }
             tdNombre.appendChild(tnNombre);
             tr.appendChild(tdNombre);
-            var tnApellido;
+            let tnApellido;
             if (checkApellido.checked) {
                 tnApellido = document.createTextNode(apellido);
             }
@@ -138,7 +154,7 @@ var Main = /** @class */ (function () {
             }
             tdApellido.appendChild(tnApellido);
             tr.appendChild(tdApellido);
-            var tnEdad;
+            let tnEdad;
             if (checkEdad.checked) {
                 tnEdad = document.createTextNode(edad);
             }
@@ -147,7 +163,7 @@ var Main = /** @class */ (function () {
             }
             tdEdad.appendChild(tnEdad);
             tr.appendChild(tdEdad);
-            var tnSexo;
+            let tnSexo;
             if (checkSexo.checked) {
                 tnSexo = document.createTextNode(sexo);
             }
@@ -157,7 +173,7 @@ var Main = /** @class */ (function () {
             tdSexo.appendChild(tnSexo);
             tr.appendChild(tdSexo);
             //TODO ELIMINAR
-            tr.addEventListener("click", function () {
+            tr.addEventListener("click", () => {
                 // let index: number = listaClientes.indexOf(e);
                 document.getElementById("id").value =
                     e.id.toString();
@@ -171,67 +187,75 @@ var Main = /** @class */ (function () {
             });
             table.appendChild(tr);
         });
-    };
-    Main.prototype.CalcularPromedio = function () {
-        var inputPromedio = document.getElementById("promedio");
-        var arrayEdades = this.listaClientes.map(function (e) { return e.edad; });
-        var suma = arrayEdades.reduce(function (a, b) { return a + b; }, 0);
-        var promedio = suma / arrayEdades.length;
-        inputPromedio.value = promedio.toString();
-    };
-    Main.prototype.FiltrarPorTipo = function () {
-        var filtro = document.getElementById("filtro")
+    }
+    CalcularPromedio() {
+        let inputPromedio = document.getElementById("promedio");
+        let arrayEdades = this.listaClientes.map((e) => e.edad);
+        this.PromesaPromedio(arrayEdades)
+            .then((res) => {
+            inputPromedio.value = res;
+        })
+            .catch((error) => {
+            console.log("error", error);
+        });
+    }
+    // public CalcularPromedio(): void {
+    //   let inputPromedio = <HTMLInputElement>document.getElementById("promedio");
+    //   let arrayEdades = this.listaClientes.map((e) => e.edad);
+    //   let suma: number = arrayEdades.reduce((a, b) => a + b, 0);
+    //   let promedio: number = suma / arrayEdades.length;
+    //   inputPromedio.value = promedio.toString();
+    // }
+    FiltrarPorTipo() {
+        let filtro = document.getElementById("filtro")
             .value;
         if (filtro == "1") {
-            var listaFiltrada_1 = this.listaClientes.filter(function (c) { return c.sexo == 1; });
-            this.AgregarTabla(listaFiltrada_1);
+            let listaFiltrada = this.listaClientes.filter((c) => c.sexo == 1);
+            this.AgregarTabla(listaFiltrada);
         }
         else if (filtro == "2") {
-            var listaFiltrada = this.listaClientes.filter(function (c) { return c.sexo == 2; });
+            var listaFiltrada = this.listaClientes.filter((c) => c.sexo == 2);
             this.AgregarTabla(listaFiltrada);
         }
         else {
             this.AgregarTabla(this.listaClientes);
         }
-    };
-    Main.prototype.LimpiarLista = function () {
+    }
+    LimpiarLista() {
         this.listaClientes = [];
         this.AgregarTabla(this.listaClientes);
-    };
-    Main.prototype.EliminarCliente = function () {
-        var id = parseInt(document.getElementById("id").value);
-        this.listaClientes = this.listaClientes.filter(function (e) {
+    }
+    EliminarCliente() {
+        let id = parseInt(document.getElementById("id").value);
+        this.listaClientes = this.listaClientes.filter((e) => {
             if (e.id != id) {
                 return e;
             }
         });
         // this.listaClientes = listaFiltrada;
         this.AgregarTabla(this.listaClientes);
-    };
-    return Main;
-}());
-window.addEventListener("load", function () {
-    var main = new Main();
-    var btnCheckId = document.getElementById("checkId");
-    var btnCheckNombre = document.getElementById("checkNombre");
-    var btnCheckApellido = document.getElementById("checkApellido");
-    var btnCheckEdad = document.getElementById("checkEdad");
-    var btnCheckSexo = document.getElementById("checkSexo");
-    var btnAgregar = document.getElementById("btnAgregar");
-    var btnPromedio = document.getElementById("btnPromedio");
-    var btnFiltro = document.getElementById("filtro");
-    var btnLimpiar = document.getElementById("btnLimpiar");
-    var btnEliminar = document.getElementById("btnEliminar");
-    btnLimpiar.addEventListener("click", function (event) { return main.handleEvent(event); });
-    btnAgregar.addEventListener("click", function (event) { return main.handleEvent(event); });
-    btnCheckId.addEventListener("change", function (event) { return main.handleEvent(event); });
-    btnCheckNombre.addEventListener("change", function (event) { return main.handleEvent(event); });
-    btnCheckApellido.addEventListener("change", function (event) {
-        return main.handleEvent(event);
-    });
-    btnCheckEdad.addEventListener("change", function (event) { return main.handleEvent(event); });
-    btnCheckSexo.addEventListener("change", function (event) { return main.handleEvent(event); });
-    btnPromedio.addEventListener("click", function (event) { return main.handleEvent(event); });
-    btnFiltro.addEventListener("change", function (event) { return main.handleEvent(event); });
-    btnEliminar.addEventListener("click", function (event) { return main.handleEvent(event); });
+    }
+}
+window.addEventListener("load", () => {
+    let main = new Main();
+    let btnCheckId = document.getElementById("checkId");
+    let btnCheckNombre = document.getElementById("checkNombre");
+    let btnCheckApellido = document.getElementById("checkApellido");
+    let btnCheckEdad = document.getElementById("checkEdad");
+    let btnCheckSexo = document.getElementById("checkSexo");
+    let btnAgregar = document.getElementById("btnAgregar");
+    let btnPromedio = document.getElementById("btnPromedio");
+    let btnFiltro = document.getElementById("filtro");
+    let btnLimpiar = document.getElementById("btnLimpiar");
+    let btnEliminar = document.getElementById("btnEliminar");
+    btnLimpiar.addEventListener("click", (event) => main.handleEvent(event));
+    btnAgregar.addEventListener("click", (event) => main.handleEvent(event));
+    btnCheckId.addEventListener("change", (event) => main.handleEvent(event));
+    btnCheckNombre.addEventListener("change", (event) => main.handleEvent(event));
+    btnCheckApellido.addEventListener("change", (event) => main.handleEvent(event));
+    btnCheckEdad.addEventListener("change", (event) => main.handleEvent(event));
+    btnCheckSexo.addEventListener("change", (event) => main.handleEvent(event));
+    btnPromedio.addEventListener("click", (event) => main.handleEvent(event));
+    btnFiltro.addEventListener("change", (event) => main.handleEvent(event));
+    btnEliminar.addEventListener("click", (event) => main.handleEvent(event));
 });

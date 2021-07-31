@@ -215,14 +215,43 @@ class Main implements EventListenerObject {
     });
   }
 
+  public getDatos = () => {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve("test");
+      }, 1500);
+    });
+  };
+  public PromesaPromedio = (array: Array<number>) => {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        let suma: number = array.reduce((a, b) => a + b, 0);
+        let promedio: number = suma / array.length;
+
+        resolve(promedio);
+      }, 750);
+    });
+  };
   public CalcularPromedio(): void {
     let inputPromedio = <HTMLInputElement>document.getElementById("promedio");
     let arrayEdades = this.listaClientes.map((e) => e.edad);
-
-    let suma: number = arrayEdades.reduce((a, b) => a + b, 0);
-    let promedio: number = suma / arrayEdades.length;
-    inputPromedio.value = promedio.toString();
+    this.PromesaPromedio(arrayEdades)
+      .then((res: any) => {
+        inputPromedio.value = res;
+      })
+      .catch((error) => {
+        console.log("error", error);
+      });
   }
+
+  // public CalcularPromedio(): void {
+  //   let inputPromedio = <HTMLInputElement>document.getElementById("promedio");
+  //   let arrayEdades = this.listaClientes.map((e) => e.edad);
+
+  //   let suma: number = arrayEdades.reduce((a, b) => a + b, 0);
+  //   let promedio: number = suma / arrayEdades.length;
+  //   inputPromedio.value = promedio.toString();
+  // }
 
   public FiltrarPorTipo(): void {
     let filtro: string = (<HTMLInputElement>document.getElementById("filtro")!)
