@@ -215,13 +215,6 @@ class Main implements EventListenerObject {
     });
   }
 
-  public getDatos = () => {
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        resolve("test");
-      }, 1500);
-    });
-  };
   public PromesaPromedio = (array: Array<number>) => {
     return new Promise((resolve, reject) => {
       setTimeout(() => {

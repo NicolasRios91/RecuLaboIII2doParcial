@@ -1,13 +1,6 @@
 "use strict";
 class Main {
     constructor() {
-        this.getDatos = () => {
-            return new Promise((resolve, reject) => {
-                setTimeout(() => {
-                    resolve("test");
-                }, 1500);
-            });
-        };
         this.PromesaPromedio = (array) => {
             return new Promise((resolve, reject) => {
                 setTimeout(() => {
